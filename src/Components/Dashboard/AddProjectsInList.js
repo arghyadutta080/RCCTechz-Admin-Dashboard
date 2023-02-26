@@ -40,7 +40,7 @@ function AddProjectsInList() {
 
   return (
     <div>
-      <div className="col">
+      <div className="col mb-4">
         <div className="card shadow-sm">
           <img src="https://rcctechz22.netlify.app/static/media/RT%20Logo.4c2fa9b42757427f5f59.png" alt="" />
 

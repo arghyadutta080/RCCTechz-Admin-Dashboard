@@ -34,7 +34,7 @@ function DashboardPage(props) {
                     <AddProjectsInList />
                 </div>
                 <div>
-                    <button className='btn btn-danger btn-lg mt-5' onClick={signOutPage}>Sign Out</button>
+                    <button className='btn btn-danger btn-lg mt-5 mb-5' onClick={signOutPage}>Sign Out</button>
                 </div>
             </div>
         </div>

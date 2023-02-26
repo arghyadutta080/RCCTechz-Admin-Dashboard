@@ -21,9 +21,6 @@ function LoginPage(props) {
 
   // FIREBASE CODE
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('');
-
   const CreateUser = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
@@ -45,15 +42,11 @@ function LoginPage(props) {
 
   return (
     <div>
-      <main className="form-signin w-50 m-auto container mt-4">
+      <main className="form-signin w-50 m-auto mt-4">
 
         <form onSubmit={handleSubmit((d) => {
-          const newEmail = d.email;
-          const newPassword = d.password;
-          setEmail(newEmail)                      // this is the problem, it is not setting the state.
-          setPassword(newPassword)
-          console.log("Before running createuser function", d, email, password)
-          CreateUser(email, password)
+          console.log(d.email, d.password)
+          CreateUser(d.email, d.password)
         })}>
 
           <img className="mb-4" src="https://rcctechz22.netlify.app/static/media/RT%20Logo.4c2fa9b42757427f5f59.png" alt="" width="72" height="57" />
