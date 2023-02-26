@@ -4,6 +4,24 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../Config/Firebase"
+
+
+// FIREBASE CODE
+
+const addProjects = async (project_name, team, github, details) => {
+  await addDoc(collection(db, "Projects"), {
+    Project_Name: project_name,
+    Team: team,
+    GitHub_Repository: github,
+    Project_Description: details
+  });
+}
+
+// FIREBASE CODE
+
+
 
 const schema = yup.object().shape({
   project_name: yup.string().required('This is a required field'),
@@ -42,6 +60,7 @@ function AddProjectsInList() {
                       <div className="modal-body">
                         <form onSubmit={handleSubmit((d) => {
                           console.log(d);
+                          addProjects(d.project_name, d.team, d.github, d.details);
                           alert("Project details are collected");
                           })}>
                           <img className="mb-4" src="https://rcctechz22.netlify.app/static/media/RT%20Logo.4c2fa9b42757427f5f59.png" alt="" width="72" height="57" />

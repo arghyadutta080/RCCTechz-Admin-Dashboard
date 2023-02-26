@@ -4,14 +4,30 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../Config/Firebase"
+
+
+// FIREBASE CODE
+
+const addEvent = async (title, date_time, platform, details) => {
+  await addDoc(collection(db, "Events"), {
+    Title: title,
+    Date_Time: date_time,
+    Platform: platform,
+    Details: details
+  });
+}
+
+// FIREBASE CODE
 
 
 const schema = yup.object().shape({
-    event_title: yup.string().required('This is a required field'),
-    date_time: yup.string().required('This is a required field'),
-    platform: yup.string().required('This is a required field'),
-    details: yup.string().required('This is a required field')
-  }).required();
+  event_title: yup.string().required('This is a required field'),
+  date_time: yup.string().required('This is a required field'),
+  platform: yup.string().required('This is a required field'),
+  details: yup.string().required('This is a required field')
+}).required();
 
 
 
@@ -43,22 +59,23 @@ function AddEventsInList() {
                       <div className="modal-body">
                         <form onSubmit={handleSubmit((d) => {
                           console.log(d);
+                          addEvent(d.event_title, d.date_time, d.platform, d.details);
                           alert("Event details are collected");
-                          })}>
+                        })}>
                           <img className="mb-4" src="https://rcctechz22.netlify.app/static/media/RT%20Logo.4c2fa9b42757427f5f59.png" alt="" width="72" height="57" />
                           <h1 className="h3 mb-3 fw-normal">Add Details about the event here</h1>
                           <div className="form-floating mt-3">
-                            <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com" {...register('event_title')}/>
+                            <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com" {...register('event_title')} />
                             <label htmlFor="floatingInput">Event Title</label>
                             <p>{errors.event_title?.message}</p>
                           </div>
                           <div className="form-floating mt-3">
-                            <input type="text" className="form-control" id="floatingTimeAndDate" placeholder="Password" {...register('date_time')}/>
+                            <input type="text" className="form-control" id="floatingTimeAndDate" placeholder="Password" {...register('date_time')} />
                             <label htmlFor="floatingPassword">Time & Date</label>
                             <p>{errors.date_time?.message}</p>
                           </div>
                           <div className="form-floating mt-3">
-                            <input type="text" className="form-control" id="floatingPlatform" placeholder="Password" {...register('platform')}/>
+                            <input type="text" className="form-control" id="floatingPlatform" placeholder="Password" {...register('platform')} />
                             <label htmlFor="floatingPassword">Event Platform</label>
                             <p>{errors.platform?.message}</p>
                           </div>

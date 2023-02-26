@@ -4,6 +4,30 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../Config/Firebase"
+
+
+// FIREBASE CODE
+
+const addMember = async (name, college_email, personal_email, img_url, club_role, designation, skills, github, linkedin, instagram, details) => {
+  await addDoc(collection(db, "Members"), {
+    Name: name,
+    College_Email: college_email,
+    Personal_Email: personal_email,
+    Img_Url: img_url,
+    club_Role: club_role,
+    Designation: designation,
+    Skills: skills,
+    GitHub : github,
+    LinkedIn: linkedin,
+    Instagram: instagram,
+    About_Yourself: details
+  });
+}
+
+// FIREBASE CODE
+
 
 const schema = yup.object().shape({
   name: yup.string().required('This is a required field'),
@@ -48,6 +72,7 @@ function AddMemberInList() {
                       <div className="modal-body">
                         <form onSubmit={handleSubmit((d) => {
                           console.log(d);
+                          addMember(d.name, d.college_email, d.personal_email, d.img_url, d.club_role, d.designation, d.skills, d.github, d.linkedin, d.instagram, d.details);
                           alert("Members details are collected");
                           })}>
                           <img className="mb-4" src="https://rcctechz22.netlify.app/static/media/RT%20Logo.4c2fa9b42757427f5f59.png" alt="" width="72" height="57" />
