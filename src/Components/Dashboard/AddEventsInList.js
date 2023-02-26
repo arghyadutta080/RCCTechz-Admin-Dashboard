@@ -86,7 +86,6 @@ function AddEventsInList() {
                           </div>
                           <div className="mt-4 mb-3 d-flex flex-row align-items-center justify-content-center">
                             <button className="w-50 btn btn-lg btn-primary" type="submit">Add Event details</button>
-                            {/* <button type="button" className="btn btn-secondary btn-lg mt-3 w-50" data-bs-dismiss="modal">Close</button> */}
                           </div>
                         </form>
                       </div>
