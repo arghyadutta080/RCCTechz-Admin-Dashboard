@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../Config/Firebase"
+import { db } from "../../Config/Firebase"
 
 
 // FIREBASE CODE

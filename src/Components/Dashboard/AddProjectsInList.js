@@ -5,16 +5,17 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../Config/Firebase"
+import { db } from "../../Config/Firebase";
 
 
 // FIREBASE CODE
 
-const addProjects = async (project_name, team, github, details) => {
+const addProjects = async (project_name, team, github, deploy, details) => {
   await addDoc(collection(db, "Projects"), {
     Project_Name: project_name,
     Team: team,
     GitHub_Repository: github,
+    Deployed_Link: deploy,
     Project_Description: details
   });
 }
@@ -27,6 +28,7 @@ const schema = yup.object().shape({
   project_name: yup.string().required('This is a required field'),
   team: yup.string().required('This is a required field'),
   github: yup.string().required('This is a required field'),
+  deploy: yup.string(),
   details: yup.string().required('This is a required field')
 }).required();
 
@@ -60,7 +62,7 @@ function AddProjectsInList() {
                       <div className="modal-body">
                         <form onSubmit={handleSubmit((d) => {
                           console.log(d);
-                          addProjects(d.project_name, d.team, d.github, d.details);
+                          addProjects(d.project_name, d.team, d.github, d.deploy ,d.details);
                           alert("Project details are collected");
                           })}>
                           <img className="mb-4" src="https://rcctechz22.netlify.app/static/media/RT%20Logo.4c2fa9b42757427f5f59.png" alt="" width="72" height="57" />
@@ -79,6 +81,11 @@ function AddProjectsInList() {
                             <input type="text" className="form-control" id="floatingTimeAndDate" placeholder="Password" {...register('github')} />
                             <label htmlFor="floatingPassword">GitHub repository link</label>
                             <p>{errors.github?.message}</p>
+                          </div>
+                          <div className="form-floating mt-3">
+                            <input type="text" className="form-control" id="floatingTimeAndDate" placeholder="Password" {...register('deploy')} />
+                            <label htmlFor="floatingPassword">Project Deployed link (Optional)</label>
+                            <p>{errors.deploy?.message}</p>
                           </div>
                           <div className="form-floating mt-3">
                             <textarea rows="20" type="text" className="form-control" id="floatingDetails" placeholder="Password" {...register('details')}></textarea>

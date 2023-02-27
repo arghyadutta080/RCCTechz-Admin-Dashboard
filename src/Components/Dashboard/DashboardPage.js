@@ -4,7 +4,7 @@ import AddMemberInList from './AddMemberInList'
 import AddProjectsInList from './AddProjectsInList'
 
 import { getAuth, signOut } from "firebase/auth";
-import { app } from '../Config/Firebase';
+import { app } from '../../Config/Firebase';
 
 
 function DashboardPage(props) {

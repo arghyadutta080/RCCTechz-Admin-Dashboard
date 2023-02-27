@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from './Config/Firebase';
+import { app } from '../Config/Firebase';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -42,7 +42,7 @@ function LoginPage(props) {
 
   return (
     <div>
-      <main className="form-signin w-50 m-auto mt-4">
+      <main className="container form-signin w-100 m-auto mt-4">
 
         <form onSubmit={handleSubmit((d) => {
           console.log(d.email, d.password)
@@ -68,8 +68,8 @@ function LoginPage(props) {
             </label>
           </div>
 
-          <button className="w-100 btn btn-lg btn-primary" type='submit'>Sign in</button>
-          <p className="mt-5 mb-3 text-muted">© 2017–2022</p>
+          <button className="w-50 btn btn-lg btn-primary" type='submit'>Sign in</button>
+          <p className="mt-5 mb-3 text-muted">Made by Arghya Dutta</p>
         </form>
 
       </main>
