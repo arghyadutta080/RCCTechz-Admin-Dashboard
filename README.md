@@ -4,8 +4,6 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<img align="left" src="" alt="Dashboard"/>
-
 ## Tools Used :
 [![](https://skillicons.dev/icons?i=bootstrap)](https://getbootstrap.com/)
 [![](https://skillicons.dev/icons?i=js)](https://www.javascript.com/)
@@ -14,6 +12,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Hosted on :
 [![](https://skillicons.dev/icons?i=netlify)](https://www.netlify.com/)
+
+## Dashboard Graphics
+<img align="left" src="DashboardSS.jpeg" alt="Dashboard"/>
 
 ### Make sure to run the following command before 'npm start'
 
